@@ -18,7 +18,7 @@ export class LogLoom {
             filename: opts.file.filename,
             extension: opts.file.extension,
         };
-        this.#FileManager = new File(fileParameters)
+        this.#FileManager = new File(fileParameters);
 
         //time
         this.#isTimestampEnable = opts.time?.isTimestampEnable ?? true;
