@@ -26,3 +26,6 @@ export interface fileManagerParameters {
     filename: string;
     extension: "log" | "txt" | "csv";
 }
+
+//singleType
+export type rowType = 'ERROR' | 'INFO' | 'WARNING' | 'ALERT'

@@ -1,5 +1,5 @@
 import { File } from "../file/file";
-import { fileManagerParameters, LogOptions } from "../types";
+import { fileManagerParameters, LogOptions, rowType } from "../types";
 
 export class LogLoom {
     //file
@@ -28,5 +28,7 @@ export class LogLoom {
 
     }
 
-    
+    addLog = (row:string,type:rowType)=>{
+        
+    }
 }

@@ -34,4 +34,12 @@ export class File {
 
         return fp;
     }
+
+    addRow = (row: string)=>{
+        try {
+            
+        } catch (err) {
+            
+        }
+    }
 }
