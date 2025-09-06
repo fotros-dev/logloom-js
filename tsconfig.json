@@ -1,9 +1,10 @@
 {
     "compilerOptions": {
+        "types": ["node"],
+        "skipLibCheck": true,
         "target": "ES2022",
         "module": "ESNext",
         "moduleResolution": "Bundler",
-        "skipLibCheck": true,
         "declaration": false,
         "forceConsistentCasingInFileNames": true,
         "strict": true,
