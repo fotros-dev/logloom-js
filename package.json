@@ -1,0 +1,31 @@
+{
+  "name": "logloom",
+  "version": "0.0.1",
+  "description": "File-first Node logger — levels, context, reliable writes.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "prepublishOnly": "npm run build && npm pack --dry-run",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch"
+  },
+  "engines": { "node": ">=18" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fotros-dev/logloom-js.git"
+  },
+  "homepage": "https://github.com/fotros-dev/logloom-js#readme",
+  "bugs": { "url": "https://github.com/fotros-dev/logloom-js/issues" },
+  "keywords": ["logger","logging","file","json","node"]
+}
