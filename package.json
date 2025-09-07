@@ -1,48 +1,55 @@
 {
-  "name": "logloom",
-  "version": "0.0.1",
-  "description": "File-first Node logger — levels, context, reliable writes.",
-  "license": "MIT",
-  "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+    "name": "logloom",
+    "version": "0.0.1",
+    "description": "File-first Node logger — levels, context, reliable writes.",
+    "license": "MIT",
+    "type": "module",
+    "main": "dist/index.cjs",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup src/index.ts --format cjs,esm --dts",
+        "prepublishOnly": "npm run build && npm pack --dry-run",
+        "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "test:ci": "jest --runInBand"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fotros-dev/logloom-js.git"
+    },
+    "homepage": "https://github.com/fotros-dev/logloom-js#readme",
+    "bugs": {
+        "url": "https://github.com/fotros-dev/logloom-js/issues"
+    },
+    "keywords": [
+        "logger",
+        "logging",
+        "file",
+        "json",
+        "node"
+    ],
+    "devDependencies": {
+        "@swc/jest": "^0.2.39",
+        "@types/jest": "^30.0.0",
+        "@types/node": "^24.3.1",
+        "jest": "^30.1.3",
+        "ts-node": "^10.9.2",
+        "tsup": "^8.5.0",
+        "typescript": "^5.9.2"
     }
-  },
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "prepublishOnly": "npm run build && npm pack --dry-run",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fotros-dev/logloom-js.git"
-  },
-  "homepage": "https://github.com/fotros-dev/logloom-js#readme",
-  "bugs": {
-    "url": "https://github.com/fotros-dev/logloom-js/issues"
-  },
-  "keywords": [
-    "logger",
-    "logging",
-    "file",
-    "json",
-    "node"
-  ],
-  "devDependencies": {
-    "@types/node": "^24.3.1",
-    "tsup": "^8.5.0",
-    "typescript": "^5.9.2"
-  }
 }
