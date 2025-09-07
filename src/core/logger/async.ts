@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import { LogOptions, rowType } from "../../types";
 import { FileAsyncType, FileManager } from "../file/async";
 import { LoggerBase } from "./Logger";
@@ -17,7 +18,11 @@ class LoggerAsync extends LoggerBase{
     };
 
     write = async (msg:string,type:rowType = 'INFO') =>{
-        this.#fileManager.addRow(msg)
+        const row = [this.genId(),type,msg];
+
+        if(this.isTimestampEnable) row.push(this.getTimestamp())
+        
+        this.#fileManager.addRow(row.join(' | '));
     }
 }
 

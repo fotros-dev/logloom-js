@@ -16,7 +16,6 @@ export interface fileOptions {
 }
 
 export interface rowOptions {
-    isGenId? : boolean,
 }
 
 
