@@ -2,7 +2,6 @@ import { fileManagerParameters, LogOptions } from "../../types";
 
 export class LoggerBase {
     //file
-    protected fileManager: object = {};
     protected fileParameters: fileManagerParameters;
     
     //time

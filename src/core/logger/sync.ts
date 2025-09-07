@@ -1,9 +1,11 @@
 
 import { LogOptions } from "../../types";
-import { FileManagerSync } from "../file/sync";
+import { FileManagerSync, FileSyncType } from "../file/sync";
 import { LoggerBase } from "./Logger";
 
 class LoggerSync extends LoggerBase {
+
+    #fileManager!:FileSyncType;
 
     private constructor(opts: LogOptions) {
         super(opts)
@@ -11,7 +13,7 @@ class LoggerSync extends LoggerBase {
 
     static init = (opts: LogOptions) => {
         const instance = new LoggerSync(opts);
-        instance.fileManager = FileManagerSync(instance.fileParameters);
+        instance.#fileManager = FileManagerSync(instance.fileParameters);
         return instance;
     };
     

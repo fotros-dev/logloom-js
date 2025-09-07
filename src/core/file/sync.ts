@@ -1,6 +1,6 @@
 import path from "path";
 import { fileManagerParameters } from "../../types";
-import { closeSync, mkdirSync, openSync } from "fs";
+import { appendFileSync, closeSync, mkdirSync, openSync } from "fs";
 import { FileBase } from "./File";
 
 class FileSync extends FileBase {
@@ -32,9 +32,17 @@ class FileSync extends FileBase {
 
         return fp;
     }
+
+    addRow = (row: string) =>{
+        appendFileSync(this.filePath, row + "\n", "utf-8");
+    }
 }
 
 export function FileManagerSync(opts: fileManagerParameters){
     const instance = FileSync.init(opts);
     return instance;
+}
+
+export interface FileSyncType  {
+    addRow(row:string):void,
 }
