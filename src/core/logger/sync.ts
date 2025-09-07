@@ -1,5 +1,5 @@
 
-import { LogOptions } from "../../types";
+import { LogOptions, rowType } from "../../types";
 import { FileManagerSync, FileSyncType } from "../file/sync";
 import { LoggerBase } from "./Logger";
 
@@ -17,6 +17,13 @@ class LoggerSync extends LoggerBase {
         return instance;
     };
     
+    write = (msg:string,type:rowType = 'INFO') =>{
+        const row = [this.genId(),type,msg];
+
+        if(this.isTimestampEnable) row.push(this.getTimestamp())
+        
+        this.#fileManager.addRow(row.join(' | '));
+    }
 }
 
 export function LogLoomSync(opts : LogOptions){
