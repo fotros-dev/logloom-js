@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import { LogOptions, rowType } from "../../types";
 import { FileAsyncType, FileManager } from "../file/async";
 import { LoggerBase } from "./Logger";
