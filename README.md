@@ -30,9 +30,9 @@ npm install logloom
 ### TypeScript
 
 ```ts
-import { LogLoom } from 'logloom';
+import { initLogLoom } from 'logloom';
 
-const logger = await LogLoom({
+const logger = await initLogLoom({
   file: {
     destination: './logs',
     filename: 'app',
@@ -51,9 +51,9 @@ await logger.flush();
 ### JavaScript (ESM)
 
 ```js
-import { LogLoom } from 'logloom';
+import { initLogLoom } from 'logloom';
 
-const logger = await LogLoom({
+const logger = await initLogLoom({
   file: { destination: './logs', filename: 'app', extension: 'log' },
   time: { isTimestampEnable: true },
 });
@@ -65,10 +65,10 @@ await logger.flush();
 ### JavaScript (CommonJS)
 
 ```js
-const { LogLoom } = require('logloom');
+const { initLogLoom } = require('logloom');
 
 (async () => {
-  const logger = await LogLoom({
+  const logger = await initLogLoom({
     file: { destination: './logs', filename: 'app', extension: 'log' },
   });
 
@@ -94,9 +94,9 @@ Use this when you need immediate writes (e.g., very short scripts, early-boot lo
 ### TypeScript
 
 ```ts
-import { LogLoomSync } from 'logloom';
+import { initLogLoomSync } from 'logloom';
 
-const logger = LogLoomSync({
+const logger = initLogLoomSync({
   file: { destination: './logs', filename: 'setup', extension: 'txt' },
   time: { isTimestampEnable: false },
 });
@@ -108,9 +108,9 @@ logger.write('Done.');
 ### JavaScript
 
 ```js
-const { LogLoomSync } = require('logloom');
+const { initLogLoomSync } = require('logloom');
 
-const logger = LogLoomSync({
+const logger = initLogLoomSync({
   file: { destination: './logs', filename: 'setup', extension: 'txt' },
   time: { isTimestampEnable: false },
 });
@@ -126,10 +126,10 @@ Sync mode appends directly using `appendFileSync` after ensuring the directory a
 
 ### Factory functions
 
-* `await LogLoom(options) -> AsyncLogger`
+* `await initLogLoom(options) -> AsyncLogger`
   Creates an async logger that **queues** appends; call `flush()` to wait for completion. ([GitHub][2])
 
-* `LogLoomSync(options) -> SyncLogger`
+* `initLogLoomSync(options) -> SyncLogger`
   Creates a synchronous logger that writes immediately. ([GitHub][5])
 
 ### Logger methods
@@ -217,7 +217,7 @@ See `package.json` for full details. ([GitHub][1])
 ### Disable timestamps
 
 ```ts
-const logger = LogLoomSync({
+const logger = initLogLoomSync({
   file: { destination: './logs', filename: 'no-time', extension: 'log' },
   time: { isTimestampEnable: false },
 });
@@ -253,7 +253,7 @@ MIT. ([GitHub][9])
 Key implementation details were derived from the repository source:
 
 * Package metadata, exports, engines, and name (`logloom`). ([GitHub][1])
-* Public exports (`LogLoom`, `LogLoomSync`). ([GitHub][10])
+* Public exports (`initLogLoom`, `initLogLoomSync`). ([GitHub][10])
 * Async logger (queue, `flush`, write format). ([GitHub][2])
 * Sync logger (direct append). ([GitHub][5])
 * Line format & timestamp helper. ([GitHub][4])
