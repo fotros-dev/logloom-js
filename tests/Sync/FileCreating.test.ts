@@ -1,7 +1,7 @@
 import { mkdtemp, rm } from "fs/promises";
 import path from "path";
 import * as os from 'os'
-import { LogLoomSync } from "../../src"; 
+import { initLogLoomSync, resetLogLoom } from "../../src"; 
 import { existsSync } from "fs";
 
 describe("LogLoomSync - Initialize (txt/log/csv)",()=>{
@@ -15,27 +15,32 @@ describe("LogLoomSync - Initialize (txt/log/csv)",()=>{
     })
 
     test('should create requested files and not fail if already exist', ()=>{
-        LogLoomSync({
-        file: { destination: tmpDir, filename: "LogText", extension: "txt" },
+        initLogLoomSync({
+            file: { destination: tmpDir, filename: "LogText", extension: "txt" },
         });
-
-        LogLoomSync({
-        file: { destination: tmpDir, filename: "LogLoom", extension: "log" },
-        });
-
-        LogLoomSync({
-        file: { destination: tmpDir, filename: "LogCSV", extension: "csv" },
-        });
-
         expect(existsSync(path.join(tmpDir, "LogText.txt"))).toBe(true);
+        resetLogLoom();
+        
+        initLogLoomSync({
+            file: { destination: tmpDir, filename: "LogLoom", extension: "log" },
+        });
         expect(existsSync(path.join(tmpDir, "LogLoom.log"))).toBe(true);
+        resetLogLoom();
+
+        
+        initLogLoomSync({
+            file: { destination: tmpDir, filename: "LogCSV", extension: "csv" },
+        });
         expect(existsSync(path.join(tmpDir, "LogCSV.csv"))).toBe(true);
+        resetLogLoom();
+        
 
         //for check not fail if already exist
-        LogLoomSync({
-        file: { destination: tmpDir, filename: "LogText", extension: "txt" },
+        initLogLoomSync({
+            file: { destination: tmpDir, filename: "LogText", extension: "txt" },
         });
         expect(existsSync(path.join(tmpDir, "LogText.txt"))).toBe(true);
+        resetLogLoom();
     })
 
 })

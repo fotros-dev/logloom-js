@@ -1,7 +1,7 @@
 import { mkdtemp, readFile, rm } from "fs/promises";
 import path from "path";
 import os from 'os'
-import { LogLoom } from "../../src";
+import { initLogLoom, resetLogLoom } from "../../src";
 import { fileParams, logParams, timeParams } from "../../src/types/index"
 import { existsSync } from "fs";
 
@@ -23,7 +23,8 @@ describe("LogLoomAsync - write row", () => {
             // time,
         };
         
-        const logger = await LogLoom(logLoomConfig);
+        resetLogLoom();
+        const logger = await initLogLoom(logLoomConfig);
         
         //fake id & time generator
         (logger as any).genId = () => 'ID-TEST';
@@ -52,7 +53,8 @@ describe("LogLoomAsync - write row", () => {
             time,
         };
         
-        const logger = await LogLoom(logLoomConfig);
+        resetLogLoom();
+        const logger = await initLogLoom(logLoomConfig);
 
         (logger as any).genId = ()=>'TEST';
         await logger.write('msg');

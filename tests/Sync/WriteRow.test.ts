@@ -3,7 +3,7 @@ import path from "path";
 import os from 'os'
 import { fileParams, logParams, timeParams } from "../../src/types/index"
 import { existsSync } from "fs";
-import { LogLoomSync } from "../../src";
+import { initLogLoomSync, resetLogLoom } from "../../src";
 
 describe("LogLoomAsync - write row", () => {
     let tempDir: string;
@@ -23,8 +23,9 @@ describe("LogLoomAsync - write row", () => {
             // time,
         };
         
-        const logger = LogLoomSync(logLoomConfig);
-        
+        resetLogLoom();
+        const logger = initLogLoomSync(logLoomConfig);
+
         //fake id & time generator
         (logger as any).genId = () => 'ID-TEST';
         (logger as any).getTimestamp = () => '02-02-2031 11:22:33';
@@ -50,7 +51,8 @@ describe("LogLoomAsync - write row", () => {
             time,
         };
         
-        const logger = LogLoomSync(logLoomConfig);
+        resetLogLoom();
+        const logger = initLogLoomSync(logLoomConfig);
 
         (logger as any).genId = ()=>'TEST';
         logger.write('msg');
