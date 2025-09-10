@@ -1,6 +1,6 @@
 {
     "name": "logloom",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "File-first Node logger — levels, context, reliable writes.",
     "license": "MIT",
     "type": "module",
