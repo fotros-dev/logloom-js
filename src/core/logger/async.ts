@@ -23,6 +23,10 @@ class LoggerAsync extends LoggerBase{
         
         this.#fileManager.addRow(row.join(' | '));
     }
+
+    flush = () =>{
+        return this.#fileManager.flush();
+    }
 }
 
 export async function LogLoom(opts : LogOptions){

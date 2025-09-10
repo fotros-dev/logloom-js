@@ -41,6 +41,10 @@ class FileAsync extends FileBase{
     addRow = async (row : string) =>{
         this.#queue = this.#queue.then(()=> appendFile(this.filePath, row+'\n', 'utf-8'));
     }
+
+    flush = () =>{
+        return this.#queue;
+    }
 }
 
 export async function FileManager(opts : fileManagerParameters){
@@ -50,4 +54,5 @@ export async function FileManager(opts : fileManagerParameters){
 
 export interface FileAsyncType {
     addRow(row:string):void,
+    flush():Promise<void>,
 }
